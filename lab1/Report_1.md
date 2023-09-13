@@ -72,10 +72,12 @@ PowerShell доступен как в операционных системах 
 # Настроить сетевой интерфейс таким образом, чтобы внешние пользователи не могли получить доступ к ресурсам компьютера по протоколу SMB.
 1. Отключение SMB на сетевом адаптере. Снимаем галочку с компонента клиент для сетей Microsoft. Это временно отключит протокол SMB.
 <div>
- <img align="left" src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d16f479a-e39c-4109-b3ae-b6a3d1ac48ef" width=400>
+ <img align="left" src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d16f479a-e39c-4109-b3ae-b6a3d1ac48ef" width=400>  
+<br></br>
  <img align="right" src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/08ea8427-bafd-44cb-9c05-edb955736080" width=360>  
 </div>
 
+<br></br>
 SMB чаще всего использует TCP для установления соединений, предоставления надежности и гарантии доставки данных. Обычно, **SMB работает на порту TCP 445 поверх него**
    
 С помощью Брандмауэра создаем правило блокировки данного порта. 
