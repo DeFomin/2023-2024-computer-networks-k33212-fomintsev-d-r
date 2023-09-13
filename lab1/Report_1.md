@@ -71,6 +71,25 @@ PowerShell доступен как в операционных системах 
   
 # Настроить сетевой интерфейс таким образом, чтобы внешние пользователи не могли получить доступ к ресурсам компьютера по протоколу SMB.
 1. Отключение SMB на сетевом адаптере. Снимаем галочку с компонента клиент для сетей Microsoft. Это временно отключит протокол SMB.
+<div>
+ <img align="left" src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d16f479a-e39c-4109-b3ae-b6a3d1ac48ef" width=400>
+ <img align="right" src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/08ea8427-bafd-44cb-9c05-edb955736080" width=360>  
+</div>
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d16f479a-e39c-4109-b3ae-b6a3d1ac48ef" width=400>
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/08ea8427-bafd-44cb-9c05-edb955736080" width=300>
+SMB чаще всего использует TCP для установления соединений, предоставления надежности и гарантии доставки данных. Обычно, **SMB работает на порту TCP 445 поверх него**
+   
+С помощью Брандмауэра создаем правило блокировки данного порта. 
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/f01ef755-031f-4d67-87a5-9dba8deb184f" width=400>  
+
+* Определение состояния, включение и отключение протоколов SMB <a href="https://learn.microsoft.com/ru-ru/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3?tabs=server">Windows Help</a>
+> Семейство протоколов SMB включает в себя разные версии, включая SMBv1, SMBv2, SMBv3 и тд.
+* SMBv1  
+```Get-SmbServerConfiguration | Select EnableSMB1Protocol``` - Обнаружить  
+```Set-SmbServerConfiguration -EnableSMB1Protocol $false``` - Выключить  
+```Set-SmbServerConfiguration -EnableSMB1Protocol $true``` - Включить  
+* SMB версии 2/v3  
+```Get-SmbServerConfiguration | Select EnableSMB2Protocol``` - Обнаружить  
+```Set-SmbServerConfiguration -EnableSMB2Protocol $false``` - Выключить  
+```Set-SmbServerConfiguration -EnableSMB2Protocol $true``` - Включить  
+
