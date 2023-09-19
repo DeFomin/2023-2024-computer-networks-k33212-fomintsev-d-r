@@ -12,6 +12,7 @@
   - [Утилита tracert](#section2.4)
   - [Утилита ipconfig](#section2.5)
   - [Утилита net](#section2.6)
+  - [Командный файл netsh (batch)](#section2.7)
   
 ## <a name="section1">Консольные утилиты настройки сетевых компонентов в ОС Windows.</a>
 
@@ -70,7 +71,7 @@ PowerShell доступен как в операционных системах 
 Список всех командлетов через *командлет*  
 * Get-Command (```например Get-Command  -Noun NetAdapter или Get-Command -Name *Help*```).
 
-## <a name="section2">Ход работы.</a>
+## <a name="section2">Ход работы</a>
 ### <a name="section2.1">Клиент для сетей Microsoft/Служба доступа к файлам и принтерам Microsoft/Протокол TCP/IP</a>
 
 1. Клиент для сетей Microsoft (Клиент для сетей Microsoft - это компонент операционной системы Windows, предназначенный для обеспечения поддержки сетевых протоколов и функциональности, связанных с сетевыми соединениями. позволяет вашему компьютеру подключаться к другим компьютерам и сетевым ресурсам в локальной сети).  
@@ -617,4 +618,8 @@ PS C:\Windows\system32> NET STATISTICS WORKSTATION
 
 Команда выполнена успешно.
 ```
+### <a name="section2.7">Командный файл netsh (batch)</a>
+Для начала я сделал резервную копию
+```netsh interface ipv4 dump > "D:\ITMO\3_course\5_semestr\backup.txt"```
+
 
