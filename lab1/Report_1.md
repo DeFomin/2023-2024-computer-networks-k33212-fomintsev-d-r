@@ -13,6 +13,8 @@
   - [Утилита ipconfig](#section2.5)
   - [Утилита net](#section2.6)
   - [Командный файл netsh (batch)](#section2.7)
+  - [Командный файл powershell](#section2.8)
+- [Вопросы и задания](#section3)
   
 ## <a name="section1">Консольные утилиты настройки сетевых компонентов в ОС Windows.</a>
 
@@ -621,5 +623,142 @@ PS C:\Windows\system32> NET STATISTICS WORKSTATION
 ### <a name="section2.7">Командный файл netsh (batch)</a>
 Для начала я сделал резервную копию
 ```netsh interface ipv4 dump > "D:\ITMO\3_course\5_semestr\backup.txt"```
+
+Далее создаем файл с раширением .bat
+```batch
+@echo off
+
+set /p choice=Select configuration mode (1 - DHCP, 2 - Manual): 
+set /p local=Enter your local area connection: 
+
+if "%choice%"=="1" (
+    echo You've choosen DHCP.
+    netsh interface ip set addres %local% dhcp
+    netsh interface ip set dns %local% dhcp
+) else if "%choice%"=="2" (
+    echo You've choosen Manual.
+
+    set /p ip=Enter IP adress: 
+    set /p mask=Enter subnet mask:
+    set /p gateway=Enter default gateway: 
+    set /p dns=Enter DNS server adress: 
+
+    netsh interface ip set address name=%local% static %ip% %mask% %gateway%
+    netsh interface ip set dnsservers name=%local% source=static address=%dns% validate=no
+) else (
+    echo Please select 1 or 2.
+)
+pause
+```
+
+### <a name="section2.8">Командный файл powershell</a>
+
+## <a name="section3">Вопросы и задания</a>
+1.	Как с помощью графической оболочки Windows можно запретить доступ через определенный сетевой интерфейс к ресурсам используемого компьютера? Как можно запретить используемому компьютеру доступ к ресурсам других компьютеров в сети Microsoft?
+> С помощью Брандмауэра (входящие) создаем правило блокировки для запрета доступа через определенный сетевой интерфейс.  
+> Для запрета доступа к ресурсам других компьютеров в сети Microsoft с помощью графической оболочки в панели управления -> "Центр управления сетями и общим доступом" -> "Изменение параметров адаптера" -> выбираем нужный адаптер, заходим в свойства -> отключаем службу доступа к файлам и принтерам Microsoft.  
+2.	Опишите назначение команды net с директивами use, view, stop, start, share, config, session, user, statistics, localgroup. Приведите примеры.
+> Команда net в операционных системах Windows используется для выполнения различных сетевых операций и административных задач. [!net](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/gg651155(v=ws.11))
+* net use - используется для подключения или отключения ресурсов сети, таких как общие папки или принтеры.
+Подключить общий ресурс
+```
+net use D: \\server\shared_folder
+```
+Отключить ресурс
+```
+net use Z: /delete
+```
+* net view - позволяет просматривать список ресурсов и компьютеров в сети.
+```powershell
+PS C:\Windows\system32> net view
+Имя сервера            Заметки
+
+-------------------------------------------------------------------------------
+\\CLEVER
+Команда выполнена успешно.
+```
+* net stop и net start - используются для остановки и запуска службы Windows.
+```powershell
+PS C:\Windows\system32> NET STOP SPOOLER
+Служба "Диспетчер печати" останавливается.
+Служба "Диспетчер печати" успешно остановлена.
+
+```powershell
+PS C:\Windows\system32> net start SPOOLER
+Служба "Диспетчер печати" запускается.
+Служба "Диспетчер печати" успешно запущена.
+```
+* net share - позволяет создавать, изменять или удалять общие ресурсы на компьютере.
+* net config - показывает информацию о конфигурации сети, включая параметры аутентификации и рабочую группу
+```powershell
+PS C:\Windows\system32> net config workstation
+Имя компьютера                                \\CLEVER
+Полное имя компьютера                         clever
+Имя пользователя                              fomidendy@gmail.com
+
+Активная рабочая станция на
+        NetBT_Tcpip_{3F9F4744-C517-4EB0-95C4-0FE5B32F0D01} (0A0027000008)
+
+Версия программы                              Windows 10 Home Single Language
+
+Домен рабочей станции                         WORKGROUP
+Домен входа                                   MicrosoftAccount
+
+Интервал ожидания открытия COM-порта (с)      0
+Отсчет передачи COM-порта (байт)              16
+Таймаут передачи COM-порта (мс)               250
+Команда выполнена успешно.
+```
+* net session - позволяет просматривать активные сеансы пользователей на компьютере.
+* net user - позволяет управлять учетными записями пользователей.
+Создать нового пользователя
+```
+net user user2 123 /add
+```
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/ed295893-d4c9-4372-8c10-204f7cc20e0b" width=200>
+* net statistics - показывает статистику сетевых протоколов и интерфейсов. 
+
+```powershell
+PS C:\Windows\system32> net statistics workstation
+Статистика рабочей станции для \\CLEVER
+
+
+Статистика после 20.09.2023 17:10:46
+
+
+  Получено байт                              5378
+  Принятые блоки сообщений сервера SMB       1
+  Передано байт                              5289
+  Переданные блоки сообщений сервера SMB     0
+  Операции чтения                            0
+  Операции записи                            0
+  Отказано в чтении                          0
+  Отказано в записи                          0
+
+  Ошибки сети                                0
+  Выполненные подключения                    0
+  Повторные подключения                      0
+  Отключений от сервера                      0
+
+  Запущенные сеансы                          0
+  Зависание сеансов                          0
+  Сбои в сеансах                             0
+  Сбои в операциях                           0
+  Счетчик использования                      2
+  Счетчик сбоев при использовании            0
+
+Команда выполнена успешно.
+```
+* net localgroup - позволяет управлять локальными группами пользователей на компьютере.
+```
+net localgroup group1 user2 /add
+```
+3.	Как с помощью командной строки в Windows узнать адрес DNS, на который настроен ваш компьютер? 
+>
+4.	Зачем нужна команда net use? Как с помощью этой утилиты подключить на локальный диск R: папку TEST на компьютере SRV (приведите командную строку)?
+>
+5.	Как в Windows из PowerShell переименовать сетевое соединение?
+>
+6.	Какие существуют и чем отличаются режимы работы адаптера (duplex) ?
 
 
