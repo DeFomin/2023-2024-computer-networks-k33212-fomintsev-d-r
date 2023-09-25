@@ -115,7 +115,7 @@ SMB чаще всего использует TCP для установления
 ### <a name="section2.3">Команда ping</a>
 В операционной системе Windows - это мощный инструмент для диагностики и проверки сети.
 a. Проверка доступности удаленного хоста:
-```
+```powershell
 PS C:\Windows\system32> ping 8.8.8.8
 Обмен пакетами с 8.8.8.8 по с 32 байтами данных:
 Ответ от 8.8.8.8: число байт=32 время=15мс TTL=107
@@ -134,7 +134,7 @@ PS C:\Windows\system32> ping 8.8.8.8
 > ICMP (Internet Control Message Protocol) - это протокол в сетях TCP/IP, используемый для отправки сообщений об ошибках и контроля состояния сети. ICMP-запросы и ICMP-ответы являются частью протокола ICMP и используются для обмена информацией между устройствами в сети. Одним из наиболее известных и часто используемых типов ICMP-сообщений являются "ICMP Echo Request" (запрос на эхо) и "ICMP Echo Reply" (ответ на эхо)
 
 b. Запуск бесконечной проверки доступности:
-```
+```powershell
 PS C:\Windows\system32> ping -t 8.8.8.8
 
 Обмен пакетами с 8.8.8.8 по с 32 байтами данных:
@@ -157,7 +157,7 @@ Control-C
 ```
 
 c. Ограничение числа запросов:
-```
+```powershell
 PS C:\Windows\system32> ping -n 1 8.8.8.8
 
 Обмен пакетами с 8.8.8.8 по с 32 байтами данных:
@@ -171,7 +171,7 @@ PS C:\Windows\system32> ping -n 1 8.8.8.8
 ```
 
 d. Изменение размера пакетов:
-```
+```powershell
 PS C:\Windows\system32> ping -l 512 1 google.com
 
 Обмен пакетами с google.com [74.125.131.100] с 512 байтами данных:
@@ -190,7 +190,7 @@ PS C:\Windows\system32> ping -l 512 1 google.com
 
 
 e. Определение маршрута к хосту:
-```
+```powershell
 PS C:\Windows\system32> tracert yandex.ru
 
 Трассировка маршрута к yandex.ru [5.255.255.70]
@@ -207,7 +207,7 @@ PS C:\Windows\system32> tracert yandex.ru
 Трассировка завершена.
 ```
 f. Сохранение результатов в файл:
-```
+```powershell
 ping -n 5 google.com > D:\ITMO\3_course\5_semestr\ping.txt
 ```
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/be93390a-f9a9-4c0d-a4ae-1c56d4abcb0d" width=300>
@@ -220,7 +220,7 @@ _4 пункт; задание "e"_
 
 b. Изменение максимального количества прыжков (хопов):  
 В 4 пункте, задания "e" выяснили что до yandex.ru 7 хопов, поэтому при  ```-h 4``` yandex.ru достигнут не был (по умолчанию количество прыжков 30)
-```
+```powershell
 PS C:\Windows\system32> tracert -h 4 yandex.ru
 
 Трассировка маршрута к yandex.ru [5.255.255.70]
@@ -236,7 +236,7 @@ PS C:\Windows\system32> tracert -h 4 yandex.ru
 
 c. Изменение времени ожидания для каждого хопа:
 К сожалению, увеличив время ожидания до 100000 5 и 6 хоп не появился
-```
+```powershell
 PS C:\Windows\system32> tracert -w 100000 yandex.ru
 
 Трассировка маршрута к yandex.ru [5.255.255.77]
@@ -258,7 +258,7 @@ ipconfig - это утилита в операционной системе Wind
 a. Получение информации о сетевых адаптерах.
 Команда ipconfig используется для отображения текущих настроек протокола TCP/IP и для обновления некоторых параметров, задаваемых при автоматическом конфигурировании сетевых интерфейсов при использовании протокола Dynamic Host Configuration Protocol (DHCP)
 
-```
+```powershell
 PS C:\Windows\system32> ipconfig
 
 Настройка протокола IP для Windows
@@ -314,7 +314,7 @@ f. upconfig /flushdns
 Широкий набор команд для управления различными аспектами сетевых служб и ресурсов.
 
 a. Просмотр запущенных служб
-```
+```powershell
 net start
 >>
 Запущены следующие службы Windows:
@@ -449,14 +449,14 @@ net start
 ```
 
 b. Остановка службы
-```
+```powershell
 PS C:\Windows\system32> NET STOP SPOOLER
 Служба "Диспетчер печати" останавливается.
 Служба "Диспетчер печати" успешно остановлена.
 ```
 
 c. Запуск службы
-```
+```powershell
 PS C:\Windows\system32> net start SPOOLER
 Служба "Диспетчер печати" запускается.
 Служба "Диспетчер печати" успешно запущена.
@@ -464,7 +464,7 @@ PS C:\Windows\system32> net start SPOOLER
 
 d. Отображение списка компьютеров
 Отображает список доменов, компьютеров или ресурсов, которые используются указанным компьютером совместно. При использовании без параметров net view отображает список компьютеров в вашем текущем домене.
-```
+```powershell
 PS C:\Windows\system32> net view
 Имя сервера            Заметки
 
@@ -474,7 +474,7 @@ PS C:\Windows\system32> net view
 ```
 e. Управление общими ресурсами (shared resources)
 Управляет общими ресурсами. При использовании без параметров net share отображает информацию обо всех ресурсах, которые являются общими на локальном компьютере.
-```
+```powershell
 PS C:\Windows\system32> net share
 
 Имя общего ресурса   Ресурс                        Заметки
@@ -487,7 +487,7 @@ ADMIN$       C:\Windows                      Удаленный Admin
 Команда выполнена успешно.
 ```
 f. Управление сетевой конфигурацией и сессиями
-```
+```powershell
 PS C:\Windows\system32> net config
 >>
 Допускается управление следующими выполняющимися службами:
@@ -498,13 +498,13 @@ PS C:\Windows\system32> net config
 Команда выполнена успешно.
 ```
 g. Управление сетевой конфигурацией и сессиями
-```
+```powershell
 PS C:\Windows\system32> net session
 >>
 В списке нет элементов.
 ```
 k. Управление пользователями и группами
-```
+```powershell
 PS C:\Windows\system32> net localgroup
 >>
 
@@ -539,7 +539,7 @@ fomid
 Команда выполнена успешно.
 ```
 l. Добавить нового пользователя
-```
+```powershell
 PS C:\Windows\system32> net localgroup testadmin /add
 >>
 Команда выполнена успешно.
@@ -550,11 +550,11 @@ PS C:\Windows\system32> net localgroup Администраторы testadmin /a
 
 ```
 Удалить пользователя
-```
+```powershell
 net localgroup Администраторы testadmin /delete
 ```
 m. Просмотр статистики сетевых интерфейсов
-```
+```powershell
 PS C:\Windows\system32> net statistics workstation
 >>
 Статистика рабочей станции для \\CLEVER
@@ -587,7 +587,7 @@ PS C:\Windows\system32> net statistics workstation
 Команда выполнена успешно.
 ```
 n. Просмотр статистики сеансов
-```
+```powershell
 PS C:\Windows\system32> NET STATISTICS WORKSTATION
 Статистика рабочей станции для \\CLEVER
 
