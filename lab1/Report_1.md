@@ -637,7 +637,7 @@ PS C:\Windows\system32> NET STATISTICS WORKSTATION
 ```batch
 @echo off
 setlocal enabledelayedexpansion
-set /p choice=Select configuration mode (1 - DHCP, 2 - Manual):
+set /p choice=Select configuration mode (1: DHCP, 2: Manual):
 echo Available network connections
 netsh interface show interface
 set /p local=Enter your local area connection ("Wireless"):
@@ -648,10 +648,12 @@ if "%choice%"=="1" (
     netsh interface ip set dns %local% dhcp
 ) else if "%choice%"=="2" (
     echo You've choosen Manual.
+
     set /p ip=Enter IP adress:
     set /p mask=Enter subnet mask:
     set /p gateway=Enter default gateway:
     set /p dns=Enter DNS server adress:
+
     netsh interface ip set address name=%local% static address="!ip!" mask="!mask!" gateway="!gateway!"
     netsh interface ip set dns name=%local% static "!dns!" validate=no
 ) else (
@@ -662,6 +664,8 @@ pause
 
 Запускаем данный скрипт ```./test2.bat```, выбираем 2 режим и наш адаптер, вводим любые данные ip, mask, gateway, dns.
 ```powershell
+PS D:\ITMO\3_course\5_semestr> ./test2.bat
+Select configuration mode (1: DHCP, 2: Manual): 2
 Available network connections
 
 Состояние адм.  Состояние     Тип              Имя интерфейса
