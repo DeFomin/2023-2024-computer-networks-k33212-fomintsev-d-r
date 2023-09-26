@@ -636,8 +636,13 @@ PS C:\Windows\system32> NET STATISTICS WORKSTATION
 ```batch
 @echo off
 
-set /p choice=Select configuration mode (1 - DHCP, 2 - Manual): 
-set /p local=Enter your local area connection: 
+set /p choice=Select configuration mode (1 - DHCP, 2 - Manual):
+
+echo Available network connections
+
+netsh interface show interface
+
+set /p local=Enter your local area connection ("Wireless"):
 
 if "%choice%"=="1" (
     echo You've choosen DHCP.
@@ -646,12 +651,12 @@ if "%choice%"=="1" (
 ) else if "%choice%"=="2" (
     echo You've choosen Manual.
 
-    set /p ip=Enter IP adress: 
+    set /p ip=Enter IP adress:
     set /p mask=Enter subnet mask:
-    set /p gateway=Enter default gateway: 
-    set /p dns=Enter DNS server adress: 
+    set /p gateway=Enter default gateway:
+    set /p dns=Enter DNS server adress:
 
-    netsh interface ip set address name=%local% static %ip% %mask% %gateway%
+    netsh interface ip set address name="%local%" static %ip% %mask% %gateway%
     netsh interface ip set dnsservers name=%local% source=static address=%dns% validate=no
 ) else (
     echo Please select 1 or 2.
@@ -785,6 +790,7 @@ Name                      InterfaceDescription                    ifIndex Status
 Ethernet 2                VirtualBox Host-Only Ethernet Adapter         8 Up           0A-00-27-00-00-08         1 Gbps
 ```
 Переименовать - ```Rename-NetAdapter -Name "Intel(R) Wi-Fi 6E AX211 160MHz " -NewName "MyWiFi"```
+
 6.	Какие существуют и чем отличаются режимы работы адаптера (duplex) ?
 Режим работы адаптера (duplex) определяет, как сетевой адаптер взаимодействует с другими устройствами в сети при передаче и приеме данных. 
 1. Полудуплекс (Half Duplex)
