@@ -662,9 +662,9 @@ if "%choice%"=="1" (
 pause
 ```
 
-Запускаем данный скрипт ```./test2.bat```, выбираем 2 режим и наш адаптер, вводим любые данные ip, mask, gateway, dns.
+Запускаем данный скрипт ```./batchcode.bat```, выбираем 2 режим и наш адаптер, вводим любые данные ip, mask, gateway, dns.
 ```powershell
-PS D:\ITMO\3_course\5_semestr> ./test2.bat
+PS D:\ITMO\3_course\5_semestr> ./batchcode.bat
 Select configuration mode (1: DHCP, 2: Manual): 2
 Available network connections
 
