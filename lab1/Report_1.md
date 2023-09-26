@@ -632,16 +632,14 @@ PS C:\Windows\system32> NET STATISTICS WORKSTATION
 Для начала я сделал резервную копию
 ```netsh interface ipv4 dump > "D:\ITMO\3_course\5_semestr\backup.txt"```
 
+После переименовал свой сетевой интерфейс ```Rename-NetAdapter -Name "Беспроводная сеть" -NewName "Wireless"```
 Далее создаем файл с раширением .bat
 ```batch
 @echo off
-
+setlocal enabledelayedexpansion
 set /p choice=Select configuration mode (1 - DHCP, 2 - Manual):
-
 echo Available network connections
-
 netsh interface show interface
-
 set /p local=Enter your local area connection ("Wireless"):
 
 if "%choice%"=="1" (
@@ -650,19 +648,66 @@ if "%choice%"=="1" (
     netsh interface ip set dns %local% dhcp
 ) else if "%choice%"=="2" (
     echo You've choosen Manual.
-
     set /p ip=Enter IP adress:
     set /p mask=Enter subnet mask:
     set /p gateway=Enter default gateway:
     set /p dns=Enter DNS server adress:
-
-    netsh interface ip set address name="%local%" static %ip% %mask% %gateway%
-    netsh interface ip set dnsservers name=%local% source=static address=%dns% validate=no
+    netsh interface ip set address name=%local% static address="!ip!" mask="!mask!" gateway="!gateway!"
+    netsh interface ip set dns name=%local% static "!dns!" validate=no
 ) else (
     echo Please select 1 or 2.
 )
 pause
 ```
+
+Запускаем данный скрипт ```./test2.bat```, выбираем 2 режим и наш адаптер, вводим любые данные ip, mask, gateway, dns.
+```powershell
+Available network connections
+
+Состояние адм.  Состояние     Тип              Имя интерфейса
+---------------------------------------------------------------------
+Разрешен       Подключен      Выделенный       Wireless
+Разрешен       Подключен      Выделенный       Ethernet 2
+
+Enter your local area connection ("Wireless"): Wireless
+You've choosen Manual.
+Enter IP adress:192.168.1.100
+Enter subnet mask:255.255.255.0
+Enter default gateway:192.168.1.1
+Enter DNS server adress:8.8.8.8
+```
+
+Проверяем через ipconfig
+```powershell
+Адаптер беспроводной локальной сети Wireless:
+
+   DNS-суффикс подключения . . . . . :
+   Описание. . . . . . . . . . . . . : Intel(R) Wi-Fi 6E AX211 160MHz
+   Физический адрес. . . . . . . . . : 58-1C-F8-F0-4B-55
+   DHCP включен. . . . . . . . . . . : Нет
+   Автонастройка включена. . . . . . : Да
+   IPv4-адрес. . . . . . . . . . . . : 192.168.1.100(Основной)
+   Маска подсети . . . . . . . . . . : 255.255.255.0
+   Основной шлюз. . . . . . . . . : 192.168.1.1
+   DNS-серверы. . . . . . . . . . . : 8.8.8.8
+   NetBios через TCP/IP. . . . . . . . : Включен
+```
+
+__При этом интернет пропадет__
+
+Возвращаем интернет и правильные настройки через тот же скрипт, в данный раз выбираем 1 пункт через dhcp
+```powershell
+Адаптер беспроводной локальной сети Wireless:
+
+   Состояние среды. . . . . . . . : Среда передачи недоступна.
+   DNS-суффикс подключения . . . . . :
+   Описание. . . . . . . . . . . . . : Intel(R) Wi-Fi 6E AX211 160MHz
+   Физический адрес. . . . . . . . . : 58-1C-F8-F0-4B-55
+   DHCP включен. . . . . . . . . . . : Да
+   Автонастройка включена. . . . . . : Да
+```
+
+Через минуту появятся правильные настройки и интернет.
 
 ### <a name="section2.8">Командный файл powershell</a>
 
