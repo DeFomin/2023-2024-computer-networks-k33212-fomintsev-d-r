@@ -721,8 +721,134 @@ b.	Наличие физического подключения (линка)
 c.	Скорость и режим работы адаптера (speed, duplex)
 
 ```powershell
+function Get-NetworkAdapterInfo {
+    param (
+        [string]$InterfaceName
+    )
+    # Получаем сетевой адаптер с указанным именем, который находится в состоянии "Up"
+    $adapter = Get-NetAdapter | Where-Object { $_.Status -eq "Up" -and $_.Name -eq $InterfaceName }
+    # Получаем информацию о сетевом адаптере через WMI
+    $WmiAdapter = Get-WmiObject Win32_NetworkAdapter | Where-Object { $_.Name -eq $InterfaceName }
+
+    # Если сетевой адаптер не найден, выводим сообщение и завершаем выполнение функции
+    if ($adapter -eq $null) {
+        Write-Host "Network interface '$InterfaceName' not found."
+        return
+    }
+
+    Write-Host "Network card: $($adapter.Name)"
+    Write-Host "Network card model: $($adapter.InterfaceDescription)"
+    Write-Host "Availability of a physical connection (link): $($adapter.LinkSpeed -ne 0)"
+    # Если есть физическое подключение
+    if ($adapter.LinkSpeed -ne 0) {
+        Write-Host "Adapter speed: $($adapter.LinkSpeed)"
+
+        # доступна ли информация о дуплексном режиме через WMI
+        if ($WmiAdapter) {
+            $DuplexMode = $WmiAdapter.Duplex
+            Write-Host "Duplex Mode: $($DuplexMode)"
+        } else {
+            Write-Host "Duplex Mode information not available for '$InterfaceName'"
+        }
+    }
+}
+# Вызов функции
+Get-NetworkAdapterInfo -InterfaceName $interfaceName
 
 ```
+
+Для смены сетовой конфигурации создаем файл с расширенем .ps1
+
+```powershell
+$interfaceName = Read-Host "Set name of network interface"
+
+$choice = Read-Host "Selecte setting mode (1: DHCP, 2: Manual)"
+
+if ($choice -eq "1") {
+    Write-Host "Selected DHCP mode."
+    # Включаем DHCP на сетевом интерфейсе
+    Set-NetIPInterface -InterfaceAlias $interfaceName -Dhcp Enabled
+    # Сбрасываем настройки DNS к значениям по умолчанию
+    Set-DnsClientServerAddress -InterfaceAlias $interfaceName -ResetServerAddresses
+} elseif ($choice -eq "2") {
+    Write-Host "Selected Manual mode."
+    $ipAddress = Read-Host "IP adress"
+    $subnetMask = Read-Host "Mask"
+    $defaultGateway = Read-Host "Gateway"
+    $dnsServers = Read-Host "DNS"
+
+    # Настройка статического IP-адреса
+    New-NetIPAddress -InterfaceAlias $interfaceName -IPAddress $ipAddress -PrefixLength 24 | Out-Null
+
+    $routeExists = Get-NetRoute -InterfaceAlias $interfaceName -DestinationPrefix "0.0.0.0/0" -ErrorAction SilentlyContinue
+    # Проверяем, существует ли маршрут по умолчанию
+    if ($routeExists -eq $null) {
+    	New-NetRoute -InterfaceAlias $interfaceName -DestinationPrefix "0.0.0.0/0" -NextHop $defaultGateway | Out-Null
+    }
+    # Устанавливаем DNS-серверы
+    Set-DnsClientServerAddress -InterfaceAlias $interfaceName -ServerAddresses $dnsServers -PassThru | Out-Null
+} else {
+    Write-Host ""
+}
+```
+
+Изначально, как и в примере с кодом batch вызываем mode Manual и меняем данные. Интернет пропадет.
+```powershell
+PS D:\ITMO\3_course\5_semestr> .\forpowershell.ps1
+Set name of network interface: Wireless
+Selecte setting mode (1: DHCP, 2: Manual): 2
+Selected Manual mode.
+IP adress: 192.168.1.99
+Mask: 255.255.255.0
+Gateway: 192.168.1.1
+DNS: 8.8.8.8
+Network card: Wireless
+Network card model: Intel(R) Wi-Fi 6E AX211 160MHz
+Availability of a physical connection (link): True
+Adapter speed: 117 Mbps
+Duplex Mode information not available for 'Wireless'
+PS D:\ITMO\3_course\5_semestr> ipconfig /all
+```
+
+Проверка: 
+```powershell
+Адаптер беспроводной локальной сети Wireless:
+
+   DNS-суффикс подключения . . . . . :
+   Описание. . . . . . . . . . . . . : Intel(R) Wi-Fi 6E AX211 160MHz
+   Физический адрес. . . . . . . . . : 58-1C-F8-F0-4B-55
+   DHCP включен. . . . . . . . . . . : Нет
+   Автонастройка включена. . . . . . : Да
+   IPv4-адрес. . . . . . . . . . . . : 192.168.1.99(Основной)
+   Маска подсети . . . . . . . . . . : 255.255.255.0
+   Основной шлюз. . . . . . . . . : 192.168.1.1
+   DNS-серверы. . . . . . . . . . . : 8.8.8.8
+   NetBios через TCP/IP. . . . . . . . : Включен
+```
+
+Исправляем с помощью dhcp и вызова данного скрипта:
+```powershell
+PS D:\ITMO\3_course\5_semestr> .\forpowershell.ps1
+Set name of network interface: Wireless
+Selecte setting mode (1: DHCP, 2: Manual): 1
+Selected DHCP mode.
+Network card: Wireless
+Network card model: Intel(R) Wi-Fi 6E AX211 160MHz
+Availability of a physical connection (link): True
+Adapter speed: 117 Mbps
+Duplex Mode information not available for 'Wireless'
+```
+
+Небольшое резюме кода:
+1. Режим DHCP:
+  * Включает DHCP на выбранном сетевом интерфейсе.  
+  * Сбрасывает настройки DNS к значениям по умолчанию.  
+2. Режим Manual (статический IP):  
+  * Запрашивает у пользователя IP-адрес, маску подсети, шлюз по умолчанию и DNS-серверы.  
+  * Настраивает сетевой интерфейс с заданными статическими настройками.  
+  * Проверяет наличие маршрута по умолчанию и создает его, если его нет.  
+  * Устанавливает указанные DNS-серверы.
+Код также включает информацию о сетевой карте: ее модель, наличие физического подключения (линка), скорость и режим работы адаптера.
 
 
 ## <a name="section3">Вопросы и задания</a>
@@ -856,4 +982,8 @@ Ethernet 2                VirtualBox Host-Only Ethernet Adapter         8 Up    
 В режиме полудуплекс адаптер может либо передавать данные, либо принимать их, но не одновременно.
 3. Полнодуплекс (Full Duplex)
 В режиме полнодуплекс адаптер может одновременно передавать и принимать данные, устройства могут работать в полнодуплексном режиме, не ожидая подтверждения передачи от других устройств. Полнодуплексное соединение более подходит для высоконагруженных сетей и обеспечивает более высокую производительность.
+
+## <a name="section4">Вывод</a>
+
+В ходе данной лабораторной работы я рассмотрел различные аспекты настройки и администрирования сетевых параметров в операционной системе Windows с использованием PowerShell и командной строки, написал два скрипта по настройке сетевого интерфейса через CMD и PowerShell через dhcp и установке вручную статического IP-адреса, маски подсети, шлюза по умолчанию и DNS-серверов. Также написал функцию по получению данных о сетевой карте: модель, наличие физического подключения, скорость и режим работы адаптера.
 
