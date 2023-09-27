@@ -15,6 +15,7 @@
   - [Командный файл netsh (batch)](#section2.7)
   - [Командный файл powershell](#section2.8)
 - [Вопросы и задания](#section3)
+- [Вывод](#section4)
   
 ## <a name="section1">Консольные утилиты настройки сетевых компонентов в ОС Windows.</a>
 
