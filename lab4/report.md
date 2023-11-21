@@ -8,6 +8,8 @@
   - [Тестирование протокола STP](#section1.5)
   - [Тестирование протокола RSTP](#section1.6)
   - [Работа с протоколом EtherChannel](#section1.7)
+  - [Динамическое агрегирование LACP](#section1.8)
+- [Вывод](#section2)
 
 
 ## <a name="section1">Организация отказоустойчивой сети на основе коммутаторов. Протоколы STP и EtherChannel.</a>
@@ -58,7 +60,7 @@ EtherСhannel — это технология, позволяющая объед
 
 ## <a name="section1.5">Тестирование протокола STP</a>
 
-Определим корневой коммутатор с помощью команды show spanning-tree.
+Определим корневой коммутатор с помощью команды ```show spanning-tree```.
 Вывод информации о каждом Spanning Tree Protocol (STP) представлен ниже
 
 * 6 коммутатор
@@ -132,7 +134,8 @@ LACP и PAgP группируют интерфейсы с одинаковыми
 * типом интерфейса.  
 
 Просмотр информации о EtherChannel:  
-```sw1#sh etherchannel summary```
+```sh etherchannel summary```    
+```show etherchannel port-channel```  
 
 Аналогично примеру из доп. материалов к лабораторной работе настраиваем агрегацию.
 
@@ -149,10 +152,32 @@ LACP и PAgP группируют интерфейсы с одинаковыми
 * Сеть
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/b322e984-f2fa-4841-9209-91067fd67ba0" width=600></p>
 
-Теперь данные порты отображаются как один целый.
+Теперь данные порты отображаются как один.
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/060ea071-567c-4204-8328-5196dc980e2f" width=600></p>
 
+## <a name="section1.8">Динамическое агрегирование LACP</a>
+
+LACP (Link Aggregation Control Protocol) - это протокол управления агрегацией каналов, позволяет устройствам автоматически определять и настраивать агрегированный канал между собой.
+
+Дальше строим схему как на рисунке 
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0079af97-6eee-4cca-9c73-d77a1b10cfd5" width=600></p>
+
+На первом, втором и третьем коммутаторах на нужных портах была настроена агрегация каналов с помощью команды channel-group n mode active, где n — номер коммутатора.
+
+* Для коммутатора 1 все порты, связанные с L3 были агрегированы  
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d0b2c8a2-4178-4d67-b3f5-a1a3350a85c3" width=600></p>
+
+* Для коммутатора 2 все порты, связанные с L3 были агрегированы  
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/66197884-c714-4b79-9176-8ed46b8242a7" width=600></p>
+
+* Для коммутатора 3 все порты, связанные с L3 были агрегированы  
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6a69110b-ce9f-4bd7-a495-869e791fca26" width=600></p>
+
+
+## <a name="section2">Вывод</a>
+В ходе выполнения данной лабораторной работы я изучил и практически ознакомился с протоколами STP и RSTP, а также с созданием и тестированием агрегированных портов.
 
 
 
