@@ -136,15 +136,24 @@ LACP и PAgP группируют интерфейсы с одинаковыми
 
 Аналогично примеру из доп. материалов к лабораторной работе настраиваем агрегацию.
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6428c53a-8af6-4e6b-a37d-d10b1de84910" width=300></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6428c53a-8af6-4e6b-a37d-d10b1de84910" width=400></p>
 
 После настроик видем, что все получилось и работает.
 
 * Для 2-го коммутатора
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aaace105-e7fa-4a7d-8ca5-074cd6e11eec" width=500></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/ae31a92d-2ce5-4760-a921-82d6aead4c66" width=600></p>
 
 * Для 1-го коммутатора
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/690d629f-6a00-4e95-b72f-e4a0046ff076" width=500></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/e08ddead-7445-4837-bb43-d49b1edb9c2d" width=600></p>
+
+* Сеть
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/b322e984-f2fa-4841-9209-91067fd67ba0" width=600></p>
+
+Теперь данные порты отображаются как один целый.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/060ea071-567c-4204-8328-5196dc980e2f" width=600></p>
+
+
 
 
 
