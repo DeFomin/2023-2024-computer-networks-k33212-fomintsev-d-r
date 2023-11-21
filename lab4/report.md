@@ -95,4 +95,24 @@ EtherСhannel — это технология, позволяющая объед
 
 ## <a name="section1.6">Тестирование протокола RSTP</a>
 
+У меня 15 вариант, поэтому 15 % 4 = 3, поэтому я соединяю switch3 и L3 в петлю. В кажестве корневого был выбран switch 1.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/fd3c3274-537c-4dce-b285-e79395182f5c" width=600></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0cc88f33-06a9-4b1d-8b74-59c5c798fc15" width=600></p>
+
+Для того, чтобы определить время сходимости при использовании STP, отключим порт FastEthernet0/2 на коммутаторе L3. И примерно через минуту соединение появилось через запасной порт.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/b6c4bda6-c0a3-41e1-8426-83c2c5fc6e2f" width=600></p>
+
+Далее возвращаем в рабочее состояние порт Fa 0/2 и переключаем коммутаторы на протокол RSTP
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/39819740-7798-40e7-8fdf-1e64c5991eac" width=600></p>
+
+Теперь снова тестируем время сходимости. Отключаем порт и смотрим: __подключение появилось мгновенно__.
+
+
+
+
+
 
