@@ -7,6 +7,7 @@
 - [Ход работы](#section1.4)
   - [Тестирование протокола STP](#section1.5)
   - [Тестирование протокола RSTP](#section1.6)
+  - [Работа с протоколом EtherChannel](#section1.7)
 
 
 ## <a name="section1">Организация отказоустойчивой сети на основе коммутаторов. Протоколы STP и EtherChannel.</a>
@@ -110,6 +111,42 @@ EtherСhannel — это технология, позволяющая объед
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/39819740-7798-40e7-8fdf-1e64c5991eac" width=600></p>
 
 Теперь снова тестируем время сходимости. Отключаем порт и смотрим: __подключение появилось мгновенно__.
+
+## <a name="section1.7">Работа с протоколом EtherChannel</a>
+
+Агрегация каналов (EtherChannel) позволяет объединять несколько физических интерфейсов в один логический канал. Это позволяет увеличить пропускную способность, обеспечивает избыточность и повышает надежность сети.
+
+По 15 варианту мне небходимо соединить 1 и 2 коммутаторы агрегацией из 4-ёх каналов.
+
+Как видно, после подключения коммутаторов из-за протокола STP он отключает все порты, кромеодного, чтобы не было петли.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/62db8700-cbde-46b1-ba16-84589983c3aa" width=600></p>
+
+LACP и PAgP группируют интерфейсы с одинаковыми:
+
+* скоростью (speed),  
+* режимом дуплекса (duplex mode),  
+* native VLAN,  
+* диапазон разрешенных VLAN,  
+* trunking status,  
+* типом интерфейса.  
+
+Просмотр информации о EtherChannel:  
+```sw1#sh etherchannel summary```
+
+Аналогично примеру из доп. материалов к лабораторной работе настраиваем агрегацию.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6428c53a-8af6-4e6b-a37d-d10b1de84910" width=300></p>
+
+После настроик видем, что все получилось и работает.
+
+* Для 2-го коммутатора
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aaace105-e7fa-4a7d-8ca5-074cd6e11eec" width=500></p>
+
+* Для 1-го коммутатора
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/690d629f-6a00-4e95-b72f-e4a0046ff076" width=500></p>
+
+
 
 
 
