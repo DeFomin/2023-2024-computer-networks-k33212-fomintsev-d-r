@@ -5,7 +5,7 @@
   - [Краткие теоретические сведения](#section1.2)
   - [Требования](#section1.3)
 - [Ход работы](#section1.4)
-  - [](#section1.5)
+  - [Начало работы с Wireshark](#section1.5)
   - [](#section1.6)
   - [](#section1.7)
   - [](#section1.8)
@@ -28,3 +28,23 @@ Wireshark – это программный инструмент для пере
 Для выполнения работы необходима установка программы Wireshark. 
 
 ## <a name="section1.4">Ход работы</a>
+
+## <a name="section1.5">Начало работы с Wireshark</a>
+* Настройка перехвата трафика
+
+Для того, чтобы настроить перехват трафика на интерфейсе так, чтобы он завершился после сбора 5 Мб, необходимо на панели нажать "Capture", перейти в "Options" и во вкладке "Options" в разделе "Stop capture automatically after" указать 5mb. После захвата 5mb произойдет автоматическое завершение перехвата трафика.  
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/02cef62c-7e86-4e9a-aee6-edeeff66dcca" width=600></p>
+
+*  Инструментарий статистики
+1. Для определения узла с максимальной активностью по объему переданных данных переходим в "Statistics", "Endpoints", выбираем нужный протокол и сортируем по "Tx Bytes"
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/e771db9d-db66-4aa1-9f8f-ef94d18d133c" width=600></p>
+
+В данном случае это узел с ip адресом 2.16.21.35
+
+2.
+
+
+
+
