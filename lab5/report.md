@@ -163,6 +163,32 @@ BROWSER
 
 2. Сбор и анализ данных протокола ICMP по удаленным узлам.
 
+В качестве 3-ех зарубехных сми я выбрал bbc, cnn, nytimes
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/00f96519-f6bf-486e-befb-628b2e54be9d" width=600></p>
+
+Как видно, удаленные узлы имеют следующие IP-адреса:
+— bbc.com: 151.101.192.81;
+— cnn.com: 151.101.3.5;
+— nytimes.com: 151.101.65.164.
+
+* Информация о ICMP-запросе на первый удаленный узел bbc.com
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/e1769fee-1590-48c3-9dba-e5520cbd036a" width=600></p>
+
+* Информация о ICMP-запросе на второй удаленный узел nytimes.com
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/4c165404-8265-4cde-84b8-24056fe7f306" width=600></p>
+
+* Информация о ICMP-запросе на третий удаленный узел cnn.com
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/900c3ae2-c7c2-44a0-b1c5-4aefdaf63132" width=600></p>
+
+При этом MAC-адрес получателя всегда остается одним и тем же, несмотря на изменение адреса удаленного узла.
+
+Это происходит потому, что все отправляемые пакеты проходят через маршрутизатор, поскольку удаленные узлы находятся за пределами локальной сети. Поэтому все MAC-адреса получателя совпадают с MAC-адресом маршрутизатора
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/4d65d1f4-483d-4410-a8dc-78b95151cb06" width=600></p>
 
 
 
