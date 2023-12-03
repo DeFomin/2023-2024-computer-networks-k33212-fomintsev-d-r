@@ -240,14 +240,6 @@ FTP передает только файлы, без служебной инфо
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/fa5e33f9-3bd3-4552-8254-1920d3438f95" width=600></p>
 
-**Четвертый пакет захваченный ftp сервера**
-
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aa1abc56-1e52-42f9-be9e-88122c11224d" width=600></p>
-
-**Четвертый третьего TCP-пакета:**
-
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/fa5e33f9-3bd3-4552-8254-1920d3438f95" width=600></p>
-
 Для ответа на вопрос cколько других датаграмм TCP содержало бит SYN? я написал фильтр ```tcp.flags.syn == 1 && (ip.addr == 192.168.3.58 && ip.addr==213.180.204.183)```
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/8bf72106-9b30-4407-ae2a-fb302f213e6f" width=600></p>
