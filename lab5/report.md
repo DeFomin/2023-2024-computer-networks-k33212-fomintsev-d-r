@@ -210,8 +210,6 @@ FTP передает только файлы, без служебной инфо
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/efafb95e-598d-4235-b4a1-53be02938acd" width=600></p>
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d1bb20db-e903-4267-82b5-d0c9a17fa5ed" width=600></p>
-
 Биты SYN и ACK являются частями TCP-заголовка и используются в установлении соединения между двумя узлами в сети. 
 
 * SYN (Synchronize):
