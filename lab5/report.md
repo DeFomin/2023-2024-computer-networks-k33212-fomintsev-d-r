@@ -201,9 +201,64 @@ FTP передает только файлы, без служебной инфо
 
 Фильтрация трафика ```ip.addr==213.180.204.183 && tcp```
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/07e33550-1d05-455d-a13f-bb79c5a75e43" width=600></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/f5e6814a-a414-472e-84b5-bce9a06cd9b0" width=600></p>
 
-Первый захваченный пакет
+**Первый захваченный пакет ftp сервера**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/91ddb135-1446-47a4-b9ca-464ac1ea32f8" width=600></p>
+
+**Поля первого TCP-пакета**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/efafb95e-598d-4235-b4a1-53be02938acd" width=600></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d1bb20db-e903-4267-82b5-d0c9a17fa5ed" width=600></p>
+
+Биты SYN и ACK являются частями TCP-заголовка и используются в установлении соединения между двумя узлами в сети. 
+
+* SYN (Synchronize):
+
+Этот бит устанавливается в 1 в пакете, который начинает процесс установки соединения. Когда клиент хочет установить соединение с сервером, он посылает пакет с установленным битом SYN.
+
+* ACK (Acknowledgment):
+
+Этот бит используется для подтверждения получения данных. Когда сервер получает пакет с установленным битом SYN от клиента, и если сервер готов установить соединение, то он отправляет пакет с установленными битами SYN и ACK в ответ. Это сообщает клиенту, что сервер готов установить соединение, и подтверждает получение запроса SYN.
+
+**Второй пакет захваченный ftp сервера**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6d5cafd4-86fb-483e-b9df-0e0f329e5588" width=600></p>
+
+**Поля второго TCP-пакета:**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/67091926-3628-417f-bde7-1d86aa69d160" width=600></p>
+
+На последнем этапе согласования для установления связи компьютер отправляет серверу сообщение подтверждения. Обратите внимание на то, что только бит ACK имеет значение 1, а значение Sequence number (Порядковый номер) увеличено до 1.
+
+**Третий пакет захваченный ftp сервера**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aa1abc56-1e52-42f9-be9e-88122c11224d" width=600></p>
+
+**Поля третьего TCP-пакета:**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/fa5e33f9-3bd3-4552-8254-1920d3438f95" width=600></p>
+
+**Четвертый пакет захваченный ftp сервера**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aa1abc56-1e52-42f9-be9e-88122c11224d" width=600></p>
+
+**Четвертый третьего TCP-пакета:**
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/fa5e33f9-3bd3-4552-8254-1920d3438f95" width=600></p>
+
+Для ответа на вопрос cколько других датаграмм TCP содержало бит SYN? я написал фильтр ```tcp.flags.syn == 1 && (ip.addr == 192.168.3.58 && ip.addr==213.180.204.183)```
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/8bf72106-9b30-4407-ae2a-fb302f213e6f" width=600></p>
+
+В итоге видны только самые первые два пакета.
+
+## <a name="section2">Вывод</a>
+В ходе выполнения данной лабораторной работы я разобрался со стеком TCP/IP, анализируя пакеты, которые отправляются и принимаются с помощью данного протокола, научился перехватывать сетевой трафик с помощью программы Wireshark, научился фильтровать собранный трафик, находить и просматривать соединения.
+
+
 
 
 
