@@ -8,7 +8,6 @@
   - [Начало работы с Wireshark](#section1.5)
   - [Сбор и анализ данных протокола ICMP](#section1.6)
   - [Анализ полей TCP](#section1.7)
-  - [](#section1.8)
 - [Вывод](#section2)
 
 
