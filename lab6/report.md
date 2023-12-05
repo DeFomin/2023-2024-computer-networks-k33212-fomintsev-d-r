@@ -49,24 +49,31 @@ NAT в общем случае представляет собой компью�
 
 Все существующие VLAN в базу данных маршрутизатора сети, так как раньше они были на коммутаторе L3. Затем необходимо было создать субинтерфейсы для каждого из VLAN, и назначить на каждый из них IP-адрес.
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/613fa480-58d1-49e4-a6bd-751d44d4a554" width=900></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/20da8d35-c082-419b-ac64-2a5201c560ea" width=700></p>
 
-Пример для Vlan 10:
+Пример для VLAN-10:
 ```
-vlan database
-vlan 10 name VLAN-10
+Router# vlan database
+Router# vlan 10 name VLAN-10
 
-conf t
-int fa 0/0.100
-encapsulation dot1Q 100
-ip address 10.10.0.254 255.255.255.0
+Router(config)# ip dhcp pool VLAN-10
+Router(dhcp-config)# network 10.10.0.0 255.255.255.0
+Router(dhcp-config)# default-router 10.10.0.254
+Router(dhcp-config)# exit
+Router(config)# interface FastEthernet0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 10.10.0.254 255.255.255.0
+Router(config-subif)# ip helper-address 10.10.0.254
+Router(config-subif)# exit
+Router(config)# end
+Router# write memory
 ```
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/ca06af15-3875-48e9-a881-e6e158445bf7" width=900></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/ca06af15-3875-48e9-a881-e6e158445bf7" width=700></p>
 
 Теперь сервер больше не выступает в качестве DHCP-сервера, необходимо настроить его на маршрутизаторе. Для каждого VLAN был создан свой набор IP-адресов
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d122cf21-5106-4e63-ada2-de1fa6034c60" width=900></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/c2edff01-cefa-49b7-9f13-5628facaa4dd" width=700></p>
 
 Просмотреть информацию о DHCP:
 
@@ -74,7 +81,7 @@ ip address 10.10.0.254 255.255.255.0
 Router# show ip dhcp pool
 ```
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6d645da3-4bb7-469b-875d-1b1821b9fdf3" width=900></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/3c4f80f9-06ee-41fe-bb3c-1e85e40a37f6" width=700></p>
 
 
 
