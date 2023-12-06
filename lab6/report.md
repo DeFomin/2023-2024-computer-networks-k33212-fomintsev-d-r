@@ -133,7 +133,7 @@ ip address 82.82.82.253 255.255.255.252
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/712437d5-d0e8-4108-8dbc-77717e201609" width=700></p>
 
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/a20874b4-c0de-466e-9197-2cffd214b4a7" width=700></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/7a09bce0-86a8-4d4a-ae7a-e0a5a2a043f1" width=700></p>
 
 ```show ip nat translations```
 
