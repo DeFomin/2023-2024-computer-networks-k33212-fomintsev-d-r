@@ -7,7 +7,7 @@
 - [Ход работы](#section1.4)
   - [Построение схемы, субинтерфейсы, dhcp-сервер](#section1.5)
   - [PAT](#section1.6)
-  - [](#section1.7)
+  - [NAT](#section1.7)
 - [Вывод](#section2)
 
 
@@ -121,14 +121,27 @@ ip address 82.82.82.253 255.255.255.252
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/c921d275-0922-49ec-ae45-1fc49f87cf26" width=700></p>
 
+## <a name="section1.7">NAT</a>
+
 * Схема
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0eb89ef7-fc4d-4077-9430-52ca8ea4657a" width=700></p>
 
+Для того, чтобы локальный сервер был доступен из-вне, необходимо настроить проброс портов с помощью следующей команды:
+```ip nat inside source static tcp 10.60.0.1 80 81.81.81.254 80```
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/712437d5-d0e8-4108-8dbc-77717e201609" width=700></p>
 
 
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/a20874b4-c0de-466e-9197-2cffd214b4a7" width=700></p>
 
+```show ip nat translations```
 
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/3cae31f5-7127-422b-8764-01901b1450fb" width=700></p>
+
+## <a name="section2">Вывод</a>
+
+В ходе выполнения лабораторной работы было закреплено понимание принципов работы NAT, а также сформированы начальные навыки в конфигурировании NAT в Cisco Packet Tracer.
 
 
 
