@@ -59,10 +59,26 @@
 
 В 1 офисе 22 устройства, 11 панелей розеток (44 разъема) => Свободно 22 (Условие о 50% свободных разъемов выполнено).
 
-5. Офис №2 (Размеры), серверная 1x1
+5. Офис №2 (Размеры 13x10), серверная 1x1
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/2f49ccc8-8c83-4f62-88b4-a2bc0003264d" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/b9121edf-d098-4696-9b14-23a7b8ab3a90" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/32cf6d13-99eb-43d6-bb67-dc3f6e5e4bdf" width=700></p>
+
+В 1 офисе 7 панелей розеток, 28 разъемов. Всего 13 устройств и 15 разъемов свободно (Условие о 50% свободных разъемов выполнено).
 
 
-6. Офис №3 (Размеры), серверная 1x1
+7. Офис №3 (Размеры 15x8), серверная 1x1
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/609e94b4-8f81-4bf9-a50a-02dc40fa7c9e" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/f1d7ec93-d5f9-4f9d-ba49-adcd285bd8a4" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/06c75e3b-dd4f-40ee-b793-d11e75d0b9d4" width=700></p>
+
+В 3 офисе всего 10 устройств; 5 панелей розеток по 20 разъемов => Свободно 10 (Условие о 50% свободных разъемов выполнено).
 
 
 ## <a name="section3">Вывод</a>
