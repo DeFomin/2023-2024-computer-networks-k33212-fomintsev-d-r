@@ -31,8 +31,40 @@
 
 ### <a name="section2">Часть 1. Установка среды моделирования</a>
 
+Был установлен Cisco Packet Tracer. 
+
 ### <a name="section2.1">Часть 2. Проектирование и реализация</a>
+
+1. Мои варианты, согласно условиям лабораторной работы: 3 и 3. Значит моя корпаративная сеть будет построена соответственно условиям ниже
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/e0649213-d207-461b-a8a3-f167f8868ea1" width=700></p>
+
+2. Карта местности (2000х1238)
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d22681b8-13d8-4944-ba93-a1f16ab9a345" width=700></p>
+
+3. Далее необходимо было расположить 3-и офиса, согласно 3-ему варианту, расстояние между 1 и 2: 100м, между 1, 2 и 3: 900м.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/8e69ebbd-1aae-4a1f-a1d8-908c4c7f4022" width=700></p>
+
+4. Офис №1 (Размеры 10x15), серверная 1x1
+
+Предварительно во всех офисах установлена wi-fi точка (с радиусом действия 15м) и работающим dhcp сервером, покрытие 100%, на данном этапе работы vlan отсутствуют.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/f9bbce1b-c422-440c-b166-788923c196e3" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40085df7-d96c-40f6-b072-e6a6f57f6a6c" width=700></p>
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/cca8884b-81d4-4fc4-886c-a43f29dc366c" width=700></p>
+
+В 1 офисе 22 устройства, 11 панелей розеток (44 разъема) => Свободно 22 (Условие о 50% свободных разъемов выполнено).
+
+5. Офис №2 (Размеры), серверная 1x1
+
+
+6. Офис №3 (Размеры), серверная 1x1
 
 
 ## <a name="section3">Вывод</a>
 
+Были сформированы навыки работы проектирования физического расположения в среде моделирования сети Cisco Packet Tracer. Было объединено в единую сеть оборудование (компьютеры, принтеры, Web камеры, IP телефоны, Wi-Fi точки доступа).
