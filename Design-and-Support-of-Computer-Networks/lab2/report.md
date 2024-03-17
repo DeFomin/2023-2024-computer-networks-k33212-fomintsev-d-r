@@ -66,6 +66,22 @@ VLAN (Virtual Local Area Network) — группа устройств, имею�
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/628ddc33-ff0d-40c8-b331-2f339b54fa33" width=700></p>
 
+Офис №3
+Настройка switch 1 
+ПК (сотрудники, vlan 80)
+
+Сначала для всех коммутаторов была добавлена информация о всех существующих VLAN:
+
+```
+interface range FastEthernet0/n - (n+k)
+switchport access vlan N
+```
+
+![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/a0e63bbc-b1e3-4960-bd4e-fbd96596dfeb)
+
+![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/e72e8789-0c1a-4363-9ff4-694621fd32b9)
+
+
 ## <a name="section3">Вывод</a>
 
 
