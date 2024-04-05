@@ -38,7 +38,7 @@ DHCP — протокол прикладного уровня модели TCP/I
 
 Часть 1
 
-![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/bd231a36-19fd-41f9-9919-9797697f1b22)
+![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27)
 
 ![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/9069a95b-5a38-4e5c-8ba4-5c63fde722f5)
 
