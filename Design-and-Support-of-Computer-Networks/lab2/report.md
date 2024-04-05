@@ -168,6 +168,8 @@ switch1
 
 ![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/73771528-e321-4a78-9db7-b0a259df90e4)
 
+![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/47f5d7d6-d24f-49de-b0cc-7525c11d94a8)
+
 
 ## <a name="section3">Вывод</a>
 
