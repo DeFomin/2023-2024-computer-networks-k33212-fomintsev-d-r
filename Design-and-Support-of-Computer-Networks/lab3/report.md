@@ -38,28 +38,33 @@ DHCP — протокол прикладного уровня модели TCP/I
 
 ## <a name="section2">Часть 1</a>
 
+Были добавлены 2 коммутатора L3 уровня ядра и 3 коммутатора L3 уровня распределения
+
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27" width="700">
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/9069a95b-5a38-4e5c-8ba4-5c63fde722f5" width="700">
-
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/954582e6-a0d8-4bf6-93f6-88ebb25a349c" width="700">
 
 
 ## <a name="section2.1">Часть 2</a>
 
+Итоговая схема сети
+
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6ae4ac2c-b2ea-4cab-9aa4-551eea7b2d4a" width="700">
+
+Настройка существующих vlan
 
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5ae2c497-3400-45c0-8ffc-64845640d45e" width="700">
 
+Настройка статического адреса сервера
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d31384c9-3011-455d-affb-b1af575bfd46" width="700">
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/582735e6-75df-4b55-9340-d0d2885954a6" width="700">
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/c04c39cc-81dc-43e8-a7ab-6d15fdefea7d" width="700">
 
 Для каждого VLAN, в коммутатор L3 была добавлена информация о всех существующих VLAN. 
 ```
 interface vlan N
 ip address 10.N.0.254 255.255.255.0
-ip helper-address 10.60.0.1
+ip helper-address 10.70.0.1
 ```
 
 После этого для порта, в который подключен другой коммутатор включаем инкапсуляцию и включаем транк мод:  
@@ -72,7 +77,7 @@ switchport mode trunk
 Настройка порта, в который подключен DHCP сервер. Поскольку сервер находится в VLAN 60:  
 ```
 interface FastEthernet0/n
-switchport access vlan 60
+switchport access vlan 70
 ```
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d92ee7ff-c0c1-43e5-8e93-acc7f7d259b1" width="700">
 
