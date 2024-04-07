@@ -34,6 +34,7 @@ DHCP — протокол прикладного уровня модели TCP/I
 Сети разграничиваются VLAN, которые были определены в предыдущей лабораторной работе. Адреса для сетей выбрать самостоятельно. 
 
 <img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5991098f-e4d1-49fc-977a-dbd5c8dbb6ff" width="700">
+
 ## <a name="section1.5">Ход работы</a>
 
 ## <a name="section2">Часть 1</a>
