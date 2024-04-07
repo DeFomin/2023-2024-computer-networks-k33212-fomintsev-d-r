@@ -33,21 +33,57 @@ DHCP — протокол прикладного уровня модели TCP/I
 К коммутатору уровня распределения будет подключен модуль DHCP корпоративной сети. Модуль будет состоять из DHCP сервера ( и маршрутизатора, при необходимости), который будет адресовать запросы к этому серверу. 
 Сети разграничиваются VLAN, которые были определены в предыдущей лабораторной работе. Адреса для сетей выбрать самостоятельно. 
 
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5991098f-e4d1-49fc-977a-dbd5c8dbb6ff" width="700">
+## <a name="section1.5">Ход работы</a>
 
-## <a name="section1">Ход работы</a>
+## <a name="section2">Часть 1</a>
 
-Часть 1
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27" width="700">
 
-![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27)
-
-![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/9069a95b-5a38-4e5c-8ba4-5c63fde722f5)
-
-
-
-Часть 2
-
-![image](https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6ae4ac2c-b2ea-4cab-9aa4-551eea7b2d4a)
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/9069a95b-5a38-4e5c-8ba4-5c63fde722f5" width="700">
 
 
-## <a name="section1">Вывод</a>
+
+## <a name="section2.1">Часть 2</a>
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6ae4ac2c-b2ea-4cab-9aa4-551eea7b2d4a" width="700">
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5ae2c497-3400-45c0-8ffc-64845640d45e" width="700">
+
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d31384c9-3011-455d-affb-b1af575bfd46" width="700">
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/c04c39cc-81dc-43e8-a7ab-6d15fdefea7d" width="700">
+
+Для каждого VLAN, в коммутатор L3 была добавлена информация о всех существующих VLAN. 
+```
+interface vlan N
+ip address 10.N.0.254 255.255.255.0
+ip helper-address 10.60.0.1
+```
+
+После этого для порта, в который подключен другой коммутатор включаем инкапсуляцию и включаем транк мод:  
+```
+interface FastEthernet0/n
+switchport trunk encapsulation dot1q
+switchport mode trunk
+```
+
+Настройка порта, в который подключен DHCP сервер. Поскольку сервер находится в VLAN 60:  
+```
+interface FastEthernet0/n
+switchport access vlan 60
+```
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d92ee7ff-c0c1-43e5-8e93-acc7f7d259b1" width="700">
+
+Проверка выдачи ip адресов dhcp сервером
+
+<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/3bb15f72-7b85-4473-bd66-69a55b80bc0f" width="700">
+
+Для ip телефонов:
+```switchport voice vlan N```
+
+## <a name="section3">Вывод</a>
+
+В ходе выполнения лабораторной работы были установлены коммутаторы уровня агрегации/распределения и уровня ядра, а также была произведена установка и настройка модуля DHCP корпоративной сети.
 
