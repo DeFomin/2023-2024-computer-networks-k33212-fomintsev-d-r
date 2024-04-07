@@ -39,24 +39,24 @@ DHCP — протокол прикладного уровня модели TCP/I
 
 Были добавлены 2 коммутатора L3 уровня ядра и 3 коммутатора L3 уровня распределения
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/40d30763-7d6a-4d66-abea-dc6af1f86e27" width="700"></p>
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/954582e6-a0d8-4bf6-93f6-88ebb25a349c" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/954582e6-a0d8-4bf6-93f6-88ebb25a349c" width="700"></p>
 
 
 ## <a name="section2.1">Часть 2</a>
 
 Итоговая схема сети
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6ae4ac2c-b2ea-4cab-9aa4-551eea7b2d4a" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/6ae4ac2c-b2ea-4cab-9aa4-551eea7b2d4a" width="700"></p>
 
 Настройка существующих vlan
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5ae2c497-3400-45c0-8ffc-64845640d45e" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5ae2c497-3400-45c0-8ffc-64845640d45e" width="700"></p>
 
 Настройка статического адреса сервера
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/582735e6-75df-4b55-9340-d0d2885954a6" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/582735e6-75df-4b55-9340-d0d2885954a6" width="700"></p>
 
 
 Для каждого VLAN, в коммутатор L3 была добавлена информация о всех существующих VLAN. 
@@ -78,11 +78,11 @@ switchport mode trunk
 interface FastEthernet0/n
 switchport access vlan 70
 ```
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d92ee7ff-c0c1-43e5-8e93-acc7f7d259b1" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d92ee7ff-c0c1-43e5-8e93-acc7f7d259b1" width="700"></p>
 
 Проверка выдачи ip адресов dhcp сервером
 
-<img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/3bb15f72-7b85-4473-bd66-69a55b80bc0f" width="700">
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/3bb15f72-7b85-4473-bd66-69a55b80bc0f" width="700"></p>
 
 Для ip телефонов:
 ```switchport voice vlan N```
