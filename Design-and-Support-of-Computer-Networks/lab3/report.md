@@ -73,7 +73,7 @@ switchport trunk encapsulation dot1q
 switchport mode trunk
 ```
 
-Настройка порта, в который подключен DHCP сервер. Поскольку сервер находится в VLAN 60:  
+Настройка порта, в который подключен DHCP сервер. Поскольку сервер находится в VLAN 70:  
 ```
 interface FastEthernet0/n
 switchport access vlan 70
