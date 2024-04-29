@@ -41,7 +41,7 @@ DHCP сервер был перенастроен с внутреннего се
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/470ea160-255c-46e8-bfea-cd5a9b83c5ed" width=700></p>
 
-Также был создан accept list ```ip access-list standard FOR-NAT```
+Также был создан access list ```ip access-list standard FOR-NAT```
 
 <p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/72716077-72b0-4b71-b5b5-97abfc9646ba" width=700></p>
 
