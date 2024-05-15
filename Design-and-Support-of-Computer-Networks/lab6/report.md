@@ -63,5 +63,11 @@ IPsec — набор протоколов, который используетс
 
 <p align=center><img src="" width=700></p>
 
+<p align=center><img src="" width=700></p>
+
+<p align=center><img src="" width=700></p>
+
+<p align=center><img src="" width=700></p>
+
 ## <a name="section3">Вывод</a>  
 
