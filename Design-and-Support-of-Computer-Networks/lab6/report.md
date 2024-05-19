@@ -55,19 +55,99 @@ IPsec — набор протоколов, который используетс
 
 ## <a name="section2">Часть 1. Настройка VPN на роутерах, на основе лабораторной работы 4.</a>  
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/5b6b249d-9336-42dd-b39e-233573d0402b" width=700></p>
+Была удалена связь с офисами и поставлен во 2-ом офисе роутер.
 
-<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/894bfbcb-3090-472e-ae32-f2de57f5219f" width=700></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/c4abe920-84a4-4043-aecc-41c5293a8bef" width=700></p>
+
+* Настройка VPN включает две фазы: создание технологического тоннеля и IP-сек тоннеля.
+* Настройка VPN на роутере включает создание политики, криптокарты, аксесс-листа и привязка криптокарты к интерфейсу.
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0f2526e6-2940-47ab-acb5-b74c22a0d49a" width=700></p>
+
+* Соответственно был исправлен nat, что бы трафик, который идет ко второму роутеру через интернет не "натился"
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/43ded8bc-3d60-47cd-a6ac-341017b7e79e" width=700></p>
+
+* Аналогичные настройки были проделаны со вторым роутером, за исключением адреса назначения, теперь таковым является первый роутер
+
+* PC1 -> PC2
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/aeeb9ff3-3410-43b8-8b15-e90e0064eae2" width=700></p>
+
+* PC2 -> PC1
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0156ca43-59e2-4ee8-a8c9-429363c6933d" width=700></p>
+
+Интернет также доступен
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/0e7e42ff-8219-49ba-99ff-5fe0a40a70bf" width=700></p>
+
+```show crypto isakmp sa```
+
+SAKMP (Internet Security Association and Key Management Protocol) отвечает за установление и управление ассоциациями безопасности, которые определяют параметры безопасности для IPsec.
+
+SA (Security Association) - это соглашение между двумя устройствами о том, как они будут обеспечивать безопасность для IPsec трафика.
 
 ## <a name="section2.1">Часть 2. Настройка VPN на Cisco ASA, на основе лабораторной работы 5.</a>  
 
-<p align=center><img src="" width=700></p>
 
-<p align=center><img src="" width=700></p>
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/a53ecfc2-249d-4587-8208-298054f11c60" width=700></p>
 
-<p align=center><img src="" width=700></p>
+* Были реализованы списки доступа
+```
+access-list FOR-VPN: Разрешает ICMP трафик из сети 192.168.1.0/24 в сеть 192.168.2.0/24.
+
+access-list FROM-VPN: Разрешает ICMP трафик из сети 192.168.2.0/24 в сеть 192.168.1.0/24.
+
+access-group FROM-VPN: Применяет список доступа FROM-VPN на выходящий трафик интерфейса inside.
+```
+
+* Политики инспекции и DHCP
+```
+class-map inspection_default и policy-map global_policy: Настройка политики инспекции ICMP трафика.
+service-policy global_policy global: Применение глобальной политики инспекции.
+dhcpd: Настройка DHCP сервера для внутренней сети, выделяющего адреса в диапазоне 192.168.1.5-192.168.1.35.
+```
+
+* Настройки IPsec VPN
+
+
+crypto ipsec ikev1 transform-set TS: Настройка набора преобразований для IPsec, используя шифрование 3DES и аутентификацию HMAC MD5.
+
+crypto map To-Site2: Создание криптокарты для VPN:
+
+* match address FOR-VPN: Использование списка доступа FOR-VPN для определения интересующего трафика.
+
+* set peer 210.210.2.2: Указание удаленного IP-адреса VPN-партнера.
+
+* set security-association lifetime seconds 86400: Настройка времени жизни SA (ассоциации безопасности) на 86400 секунд (24 часа).
+
+* set ikev1 transform-set TS: Применение набора преобразований TS.
+
+* interface outside: Привязка криптокарты к внешнему интерфейсу outside.
+
+crypto ikev1 enable outside: Включение IKEv1 на интерфейсе outside.
+
+crypto ikev1 policy 1: Настройка политики IKEv1:
+
+encr 3des: Шифрование 3DES.
+
+hash md5: Хеширование MD5.
+
+authentication pre-share: Предварительно разделенный ключ для аутентификации.
+
+group 2: Группа 2 (MODP 1024-битный) для DH (Diffie-Hellman).
+
+lifetime 43200: Время жизни политики IKE в 43200 секунд (12 часов).
+
+
+
+<p align=center><img src="https://github.com/DeFomin/2023-2024-computer-networks-k33212-fomintsev-d-r/assets/90705279/d8e48d87-f444-4904-afae-8947765e39c0" width=700></p>
+
 
 <p align=center><img src="" width=700></p>
 
 ## <a name="section3">Вывод</a>  
+
+В ходе выполнения лабораторной работы в ее первой части была выполнена настройка VPN на роутерах, на основе лабораторной работы 4 и во второй части была выполнена настройка VPN на Cisco ASA, на основе лабораторной работы 5.
 
