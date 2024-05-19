@@ -102,15 +102,15 @@ access-list FROM-VPN: Разрешает ICMP трафик из сети 192.168
 access-group FROM-VPN: Применяет список доступа FROM-VPN на выходящий трафик интерфейса inside.
 ```
 
-* Политики инспекции и DHCP
+* Политики инспекции
 ```
 class-map inspection_default и policy-map global_policy: Настройка политики инспекции ICMP трафика.
 service-policy global_policy global: Применение глобальной политики инспекции.
-dhcpd: Настройка DHCP сервера для внутренней сети, выделяющего адреса в диапазоне 192.168.1.5-192.168.1.35.
 ```
 
 * Настройки IPsec VPN
 
+IPsec (Internet Protocol Security) VPN (Virtual Private Network) — это технология, используемая для создания безопасных туннелей для передачи данных через общедоступные сети, такие как Интернет.
 
 crypto ipsec ikev1 transform-set TS: Настройка набора преобразований для IPsec, используя шифрование 3DES и аутентификацию HMAC MD5.
 
